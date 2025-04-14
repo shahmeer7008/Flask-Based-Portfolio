@@ -51,8 +51,8 @@ def contact():
 
         msg = Message(
             subject=f"New Contact Form Submission: {subject}",
-            sender='razaali.services@gmail.com',
-            recipients=['razaalipk313@gmail.com']
+            sender='zmshahmeer687@gmail.com',
+            recipients=['m.shahmeer687@gmail.com']
         )
         msg.body = f'''
         Name: {name}
