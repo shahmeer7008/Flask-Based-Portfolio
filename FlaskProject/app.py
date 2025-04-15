@@ -42,7 +42,7 @@ def contact():
         subject = request.form.get("subject")
         message = request.form.get("message")
 
-        print(f"Received: {name}, {email}, {subject}, {message}")  # Debug log
+        print(f"Received: {name}, {email}, {subject}, {message}")
 
         new_contact = Contacts(name=name, email=email, subject=subject, message=message)
         db.session.add(new_contact)
@@ -62,21 +62,17 @@ def contact():
         '''
 
         mail.send(msg)
-        print("Email sent ✅")
+        print("Email sent")
 
         flash('Your message has been sent successfully!', 'success')
         return redirect(url_for('home'))
 
     except Exception as e:
         db.session.rollback()
-        print("❌ ERROR:", e)  # Most important line!
+        print(" ERROR:", e) 
         flash('An error occurred. Please try again later.', 'danger')
         return redirect(url_for('home'))
-def vercel_handler(request):
-    from werkzeug.wrappers import Response
-    with app.request_context(request.environ):
-        response = app.full_dispatch_request()
-    return Response(response.get_data(), status=response.status_code, headers=dict(response.headers))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
